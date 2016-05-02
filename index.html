@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+class: center, middle
+
+# LA Labs: Raspberry Docker Challenge
+
+CC-BY-SA: Dion Dresschers
+
+![cc]
+
+[cc]: images/cc.png "CC image"
+
+
+
+---
+
+# Agenda
+
+1. Who are we
+1. What are we going to do
+1. What are we NOT going to do 
+1. In the beginning...
+1. The Challenge...
+1. Techniques and follow up
+1. Let's go crazy!
+
+---
+
+# Who are we
+
+* We are the Linux Amsterdam Foundation
+* Founded on 7 January 2014 with 20+ members
+* We have the goal to share knowledge of Linux platforms and Open Source
+* [www.linuxamsterdam.nl](https://www.linuxamsterdam.nl "Titel tekst").
+* Daniel Kropveld and Dion Dresschers
+
+![la]
+
+[la]: images/la.png "alternatieve tekst"
+
+---
+
+# What are we going to do
+
+* We are going to get two useful Docker images running
+* It has to run on a Rasbperry Pi
+* The two Docker images have to be useful (like a blog and online storage)
+* The two services have have to be accessable from the internet
+* We are going to configure stuff and talk about it
+
+---
+
+# What are we NOT going to do 
+
+* We are NOT going to teach you how to use Linux or Docker
+* We CAN give you useful information and a helping community
+
+---
+
+class: center, middle
+
+# In the beginning...
+
+
+
+---
+
+## Problem 
+
+* I've created a Blog for my sister on my VPS
+* The site got hacked (I didn't have snaphots or backups)
+* Now I wanted to host it at my own home
+
+---
+
+## Advantages
+
+* More challenging
+* Learningcurve
+* Cost reduction
+* Privacy
+
+---
+
+## Disadvantages
+
+* Engery costs
+* At home ADSL (slow upload speed)
+* Redundancy !?
+
+---
+
+## Requirements
+
+* Low enery costs
+* The ability to run run more domains
+  * www.desireedresschers.nl
+  * owncloud.dresschers.net
+* Backup
+* (Reduncandy)
+
+
+---
+
+## The Server / Processor
+
+* At home a Intel i5 desktop with 16GB (about 150 engery costs a year)
+* The search for a more energyfriendly computer which is the Rasperry Pi
+* Raspberry has ARM processor RISC vs Intel CISC
+* RISC is Reduced Instruction Set Computing, energy saver!
+
+
+---
+
+
+![acorn]
+
+[acorn]: images/acorn.png "alternatieve tekst"
+
+The first ARM Processor
+
+---
+
+
+![mobiles]
+
+[mobiles]: images/mobiles.png "alternatieve tekst"
+
+Almost everybody is using ARM.
+
+---
+
+
+
+![raspberry]
+
+[raspberry]: images/raspberry.png "alternatieve tekst"
+
+The Raspberry Pi
+
+---
+
+
+![raspberrys]
+
+[raspberrys]: images/raspberrys.png "alternatieve tekst"
+
+Differences between Raspberry Pi's
+
+---
+
+## The OS of the Rasbpery Pi 3
+
+* Raspbian 
+* 1991 Linux is compatible with Unix OS by Linux Thorvalds (Unix was too expensive)
+* Kernel of Linux has been merged with the tools of GNU (Open Source Unix alternative)
+* Debian is the Linux distribution (openly in the spirit of the GNU Project)
+
+---
+
+
+![os]
+
+[os]: images/os.png "alternatieve tekst"
+
+Choices between different OS'es for the RPi.
+
+---
+
+## The OS of the Raspberry Pi 3
+
+* Raspbian 8 (Jessie), Raspbian 7 (Wheezy)
+* Ubuntu Snappy Core (64-bit)
+* Ubuntu Mate (Desktop)
+* Windows 10 IOT Core
+* RISC OS
+* Others
+
+---
+
+Techniques
+
+* DNS (done at www.gandi.net)
+* NAT (done in the ADSL router)
+* '/etc/hosts'-file
+* Apache
+* Apache Virtualhosts
+
+---
+
+![image1]
+
+[image1]: images/1.png "alternatieve tekst"
+
+
+---
+
+
+
+![image2]
+
+[image2]: images/2.png "alternatieve tekst"
+---
+
+
+
+![image3]
+
+[image3]: images/3.png "alternatieve tekst"
+---
+
+
+
+
+
+![image4]
+
+[image4]: images/4.png "alternatieve tekst"
+---
+
+
+
+![image5]
+
+[image5]: images/5.png "alternatieve tekst"
+---
+
+
+
+![image6]
+
+[image6]: images/6.png "alternatieve tekst"
+---
+
+
+
+![image7]
+
+[image7]: images/7.png "alternatieve tekst"
+---
+
+
+
+![image8]
+
+[image8]: images/8.png "alternatieve tekst"
+---
+
+
+
+![image9]
+
+[image9]: images/9.png "alternatieve tekst"
+---
+
+
+
+![image10]
+
+[image10]: images/10.png "alternatieve tekst"
+
+
+---
+
+
+![image11]
+
+[image11]: images/11.png "alternatieve tekst"
+
+---
+
+# Backup
+
+Lame, but you can duplicate the RPi SD card:
+
+```bash
+# dd if=/dev/sdb1 of=/home/dion/rpi_backup
+```
+
+
+---
+
+class: center, middle
+
+# The Challenge...
+
+---
+
+# The Challenge:
+
+To do more or less the same, but now with Docker Images
+
+---
+
+
+Why Docker?
+
+* Cleaner
+* More modular/separated
+* Less work (!?)
+* Faster (!?)
+
+---
+
+![docker]
+
+[docker]: images/docker.png "alternatieve tekst"
+
+Why using Docker
+
+---
+
+# Techniques and follow up
+
+* Still DNS 
+* Still NAT
+* [Get started with Docker](https://docs.docker.com/linux/ "alt")
+* [Hypriot Image](http://blog.hypriot.com/downloads/)
+* [Ubuntu Snappy Core](http://www.ubuntu.com/cloud/snappy)
+* [Proxy you Docker images](http://stackoverflow.com/questions/29519215/my-websites-running-in-docker-containers-how-to-implement-virtual-host "alt")
+* [Wordpress with Docker](https://www.digitalocean.com/community/tutorials/how-to-dockerise-and-deploy-multiple-wordpress-applications-on-ubuntu "alt")
+* Whatever you want...
+  * Snaphots
+  *  Backup
+  * Trend analysis
+  * Web Certificate (HTTPS)
+  * Site Recovery
+
+---
+
+class: center, middle
+
+# Let's go crazy!
+(and keep each other posted on Slack)
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </textarea>
+
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
+
